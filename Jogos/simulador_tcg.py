@@ -61,3 +61,42 @@ defensor = carta2 if atacante == carta1 else carta1
 print(f"\n🎲 Sorteio realizado! {atacante.nome} joga primeiro.")
 print("--- A Batalha Vai Começar! ---")
 time.sleep(1)
+
+# 5. Loop do Jogo (Turnos)
+
+
+turno = 1
+while carta1.esta_viva() and carta2.esta_viva():
+    print(f"\n⚡ Rodada {turno} ⚡")
+    print(f"{carta1.nome} ({carta1.hp} HP) VS {carta2.nome} ({carta2.hp} HP)")
+    print("-" * 30)
+    time.sleep(1)
+      
+    
+    print(f"⚔️  {atacante.nome} ataca {defensor.nome} causando {atacante.ataque} de dano!")
+    defensor.hp -= atacante.ataque
+    
+    
+    if not defensor.esta_viva():
+        defensor.hp = 0  
+        break
+
+    atacante, defensor = defensor, atacante
+    
+    turno += 1
+    time.sleep(1.5)
+
+    turno += 1
+    time.sleep(1.5)
+
+# 6. Fim de Jogo e Anúncio do Vencedor
+
+
+print("\n" + "="*30)
+print("       Fim Da Batalha!        ")
+print("="*30)
+
+if carta1.esta_viva():
+    print(f"🏆 Vencedor: {carta1.nome} com {carta1.hp} de HP restante!")
+else:
+    print(f"🏆 Vencedor: {carta2.nome} com {carta2.hp} de HP restante!")
